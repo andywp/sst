@@ -1,0 +1,96 @@
+1. Tambahkan di function.php (Sesuaikan dengan nama domain)
+   function perbaharuipath($html){
+	$healthy = array('src="/', 'href="/','src="//', 'href="//', "src='/", "href='/","src='//", "href='//");
+        $yummy   = array('src="http://demo.citraweb.co.id/', 'href="http"//demo.citraweb.co.id/', 'src="http://demo.citraweb.co.id/', 'href="http"//demo.citraweb.co.id/','src="http://demo.citraweb.co.id/', 'href="http"//demo.citraweb.co.id/', 'src="http://demo.citraweb.co.id/', 'href="http"//demo.citraweb.co.id/');
+        $newphrase = str_replace($healthy, $yummy, $html);
+	return $newphrase;
+   } 
+2. Untuk gambar dumy bisa dicopykan folder images di uploads->files (jangan lupa path diatur ulang urlnya diganti sesuai directory project (contoh :http://demo.citraweb.co.id/New_cms/awp-content/uploads/files/images)
+3. Tambahkan di file system.php
+
+	function sendMailNewsletter($sendmail){
+	
+		if($this->config['useMailer']){
+		
+			require_once(systemPath.'plugins/phpmailer/class.phpmailer.php');
+		
+			$mail = new PHPMailer();
+			
+			$mail->IsSMTP();
+			$mail->SMTPAuth 	= true;
+			if($sendmail['server']=="local"){
+			$mail->Host 		= $this->config['emailHost2'];
+			$mail->Username 	= $this->config['emailUser2'];
+			$mail->Password 	= $this->config['emailPassword2'];
+            }
+			else if($sendmail['server']=="amazon"){
+			 
+			$mail->Host 		= "tls://email-smtp.us-west-2.amazonaws.com";
+			$mail->Username 	= "AKIAIX7MFNR5637RNMNA";
+			$mail->Password 	= "AoG5IadUfSkb20rP4CdRJAZj6pMLWOqSzGgk5CDAiHfZ";
+			$mail->Port       	= 465;
+				
+			}
+			
+			$mail->From 		= $sendmail['from'];
+			$mail->FromName 	= $sendmail['from_name'];
+			$mail->WordWrap 	= 60;
+			
+			$mail->IsHTML(true);
+			
+			$mail->Subject 		= $sendmail['subject'];
+			$mail->Body 		= $sendmail['content'];
+
+			$mail->AddAddress($sendmail['to']);	
+			$mail->AddReplyTo($sendmail['from']);
+			
+            if($sendmail['cc']!=''){
+            $mail->AddCC($sendmail['cc']);
+			}
+
+			if($mail->Send()){
+				return 'success';
+			}
+			else {
+				return 'failed '.$mail->ErrorInfo;
+			}
+		
+		}
+		else{
+		
+			$headers  = 'MIME-Version: 1.0' . "\r\n";
+			$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+			$headers .= 'From: '.$sendmail['from_name'].' <'.$sendmail['from'].'>' . "\r\n";
+			
+			if(mail($sendmail['to'], $sendmail['subject'], $sendmail['content'], $headers, '-f '.$sendmail['from'])){
+				return true;
+			}
+			
+			if($sendmail['cc']!=''){
+			   if(mail($sendmail['cc'], $sendmail['subject'], $sendmail['content'], $headers, '-f '.$sendmail['from'])){
+				return 'success';
+			   }
+			}
+			else return 'failed';
+		}
+	}
+4. Tambahkan di file config.php
+   /* email newsletter*/
+
+   $config['useMailer2']	 	= true;
+
+   $config['emailHost2']	 	= 'mail.demo.citraweb.co.id';
+
+   $config['emailUser2'] 	 	= 'web@demo.citraweb.co.id';
+
+   $config['emailPassword2'] 	        = 'petung//31';
+5. Bikin colom newsletter di table sas_params
+6. Yang ditambah di menu management
+   ---------------------------
+   | Newsletter             V |
+   |  - Send Newsletter	      |
+   |  - Subscriber            |
+   |  - Statistik             | 
+   |  - Newsletter Excel      |
+   |  - Outbox                |
+   ---------------------------
