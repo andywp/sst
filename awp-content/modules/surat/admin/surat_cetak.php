@@ -27,7 +27,7 @@
 	<div class="form-group">
 		<label class="control-label">Pilih Mahasiwa</label>
 		<div class="controls">
-			<select name="mhs[]" class="select2  select2-selection--multiple form-control" multiple required>
+			<select name="mhs" class="select2 form-control" required>
 				<option value="">--</option>
 				<?= $optMhs ?>
 			</select>

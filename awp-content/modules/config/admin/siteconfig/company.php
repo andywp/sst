@@ -14,6 +14,7 @@ $params = array(
 	$this->form->input->text('Whatsapp', 'add_company_wa',40),
 	$this->form->input->text('Fax', 'add_company_fax',40),
 	$this->form->input->text('Email Account', 'add_email_account',40),
+	$this->form->input->textarea('Diskripsi', 'add_company_deskripsi',40,2),
 	
 	//Hidden Value
 	$this->form->input->html('<input type="hidden" class="active_tab" name="active_tab" value="company">')
