@@ -154,8 +154,7 @@ else{
 	<?php
 }
 ?>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4xJjwX5seUaG1BKxcnhz-jDUWXg8k8Ds&callback=initMap"
-    async defer></script>
+
 <?php
 $contactSettings = $this->getParams('contact');
 $markerInfo		 = base64_decode($contactSettings['content']);

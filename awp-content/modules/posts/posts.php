@@ -1,7 +1,7 @@
 <?php if(!defined('basePath')) exit('No direct script access allowed');
 
-$categoryID = $this->db->getOne("select category_id from ".$this->table_prefix."pages where page_id='".$this->thisPageID()."'");
-if($this->getSwitch()=='post_section'){
+ $categoryID = $this->db->getOne("select category_id from ".$this->table_prefix."pages where page_id='".$this->thisPageID()."'");
+/* if($this->getSwitch()=='post_sectiona'){
 	$shoPerPage 	= 12;
 	$query 			= "select post_id from ".$this->table_prefix."posts where post_section='".$categoryID."' and publish='1' order by post_id desc";
 	$posts			= new stdClass;
@@ -17,10 +17,9 @@ if($this->getSwitch()=='post_section'){
 		include modulePath.$this->thisModule().'/posts.category.php';
 	}
 }
-else{
+else{ */
 
 	if($categoryID!=0){
-
 		switch($this->uri(1)){
 
 			case 'read':
@@ -60,5 +59,5 @@ else{
 				break;
 		}
 	}
-}
+/* } */
 ?>

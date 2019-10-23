@@ -32,6 +32,47 @@
 
 -----------------------------------------------------------------------------------*/
 
+
+*------------------------------------------*/
+/*	    Rewrtie bootstrap
+/*------------------------------------------*/
+
+/* equal column */
+@media(min-width:768px){
+	.row-eq-height{
+		display: -webkit-box;
+		display: -webkit-flex;
+		display: -ms-flexbox;
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	.row-eq-height > [class*="col-"]{
+		display: flex;
+		flex-direction: column;
+	}
+}
+
+/* thumbnail */
+.thumbnail {
+	border-width: 0;
+	padding: 0;
+	
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+}
+.thumbnail .caption{
+	padding: 5px 15px;
+}
+/*------------------------------------------*/
+/*	        Section
+/*------------------------------------------*/
+section {
+    margin: 70px 0;
+}
+
+
 /*----------------------------------------*/
 /*  1.  Theme default CSS
 /*----------------------------------------*/
@@ -614,11 +655,11 @@ div#slider img {
 }
 
 .stick .main-menu ul.nav>li>a {
-  color: #fff;
-  line-height: 22px;
-  padding: 24px 0px;
-  text-transform: capitalize;
-  letter-spacing: 1px;
+color: #fff;
+    line-height: 22px;
+    padding: 24px 0px;
+    text-transform: uppercase;
+    letter-spacing: 0px;
 }
 
 .stick .navbar-default .navbar-toggle .icon-bar {
@@ -2266,9 +2307,14 @@ div#slider img {
 .post-information .entry-meta span a {
   color: #444;
   display: inline-block;
-  padding: 10px 0;
+  padding: 10px 30px;
 }
-
+.more {
+    margin-bottom: 30px;
+}
+section.index {
+    padding-top: 70px;
+}
 .entry-meta span a:hover {
   color: #3EC1D5;
 }
@@ -2511,3 +2557,6 @@ span.email-notes {
 /*----------------------------------------
  .End CSS
 ----------------------------------------*/
+.jurnal .single-blog {
+    margin-bottom: 30px;
+}

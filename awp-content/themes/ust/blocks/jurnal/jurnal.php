@@ -3,6 +3,9 @@
 	//adodb_pr($jurnal);
 	$html='';
 	foreach($jurnal as $r){
+		
+		$diskripsi=(strlen(strDecode($r['diskripsi'])) > 200 )?substr(strDecode($r['diskripsi']),0,200).'...':strDecode($r['diskripsi']);
+		
 		$html.='
 					<div class="col-md-12 col-sm-12 col-xs-12">
 						<div class="single-blog">
@@ -10,7 +13,7 @@
 								<h4>'.strDecode($r['jurnal']).'</h4>
 							</div>
 							 <p>
-								'.strDecode($r['diskripsi']).'
+								'.$diskripsi.'
 							 </p>
 							 <a href="'.baseURL.'jurnal/'.$r['jurnal_id'].'/'.seo_slug($r['jurnal']).$this->permalink().'" class="ready-btn">Detail</a>
 						</div>
